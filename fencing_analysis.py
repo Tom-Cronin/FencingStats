@@ -23,6 +23,9 @@ def two_proportion_test(pool1_df, pool2_df):
         merged_df.at[index, 'z_score'] = z_score
         merged_df.at[index, 'p_value'] = p_value
 
-    result_df = merged_df[['First', 'Last', "proportion_pool1", 'proportion_pool2', 'z_score', 'p_value']].copy()
+    # Calculate indicator difference
+    merged_df['indicator_diff'] = merged_df['Indicator_pool2'] - merged_df['Indicator_pool1']
+
+    result_df = merged_df[['First', 'Last', "proportion_pool1", 'proportion_pool2', 'z_score', 'p_value', 'indicator_diff']].copy()
 
     return result_df
